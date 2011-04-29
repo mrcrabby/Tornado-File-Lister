@@ -13,6 +13,5 @@ To run the file lister, simply unzip/untar and deploy to the desired directory.
 
 The file lister can also be run behind a static file server like [nginx](http://www.nginx.org) for extreme optimization. See the [Tornado Documentation](http://www.tornadoweb.org/documentation) for more details.
 
-Enjoy!
 
-- Hunter
+-Hunter
