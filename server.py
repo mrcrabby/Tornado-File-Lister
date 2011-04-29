@@ -11,12 +11,11 @@ import tornado.options
 import tornado.web
 import tornado.template as template
 from tornado.options import define, options
-define("port", default=5270, help="run on the given port", type=int)
+define("port", default=8888, help="run on the given port", type=int)
 class Application(tornado.web.Application):
     def __init__(self):
         handlers = [
 			(r"/", IndexHandler),
-			(r"/files", ListHandler),
 			(r"/upload/([A-Za-z0-9\_\.\-]+)", UploadHandler),
 			(r"/undefined", ErrorHandler),
         ]
@@ -29,23 +28,16 @@ class IndexHandler(tornado.web.RequestHandler):
     @tornado.web.asynchronous
     def get(self):
 		items = []
-		for filename in os.listdir("/Users/Hunter/doc/hunter/upload/"):
+		for filename in os.listdir("upload/"):
 			items.append(filename)
-		self.render('index.html', items=items)
+		self.render('static/index.html', items=items)
     def post(self):
     	file_content = self.request.files['datafile'][0]['body']
     	file_name = self.request.files['datafile'][0]['filename']
     	x = open("upload/" + file_name, 'w')
     	x.write(file_content)
     	x.close()
-    	self.redirect("/hunter/")
-class ListHandler(tornado.web.RequestHandler):
-	@tornado.web.asynchronous
-	def get(self):
-		items = []
-		for filename in os.listdir("/Users/Hunter/doc/hunter/upload/"):
-			items.append(filename)
-		self.render('template.html', items=items)
+    	self.redirect("/")
 class UploadHandler(tornado.web.RequestHandler):
 	@tornado.web.asynchronous
 	def get(self, filename):
@@ -56,7 +48,7 @@ class UploadHandler(tornado.web.RequestHandler):
 class ErrorHandler(tornado.web.RequestHandler):
 	@tornado.web.asynchronous
 	def get(self):
-		self.redirect('/hunter/')
+		self.redirect('/')
 def main():
     tornado.options.parse_command_line()
     http_server = tornado.httpserver.HTTPServer(Application(), xheaders=True)
