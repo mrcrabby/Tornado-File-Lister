@@ -3,4 +3,4 @@ Tornado File Lister is a simple async HTTP file server that makes use of some of
 To install, simply unzip/untar and deploy to the desired directory.
 
 * Then open a shell and:
-	python server.py
+	<pre><code>python server.py</code></pre>
