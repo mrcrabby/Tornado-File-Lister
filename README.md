@@ -10,7 +10,7 @@ To run the file lister, simply unzip/untar and deploy to the desired directory.
 	<pre><code>python server.py --port=XXXX</code></pre>
 	
 - - -
-A live example is located [here](http://hunterlang.com/hunter/).
+A live example is located [here](http://up.hunterlang.com).
 
 The file lister can also be run behind a static file server like [nginx](http://www.nginx.org) for extreme optimization. See the [Tornado Documentation](http://www.tornadoweb.org/documentation#running-tornado-in-production) for more details.
 
